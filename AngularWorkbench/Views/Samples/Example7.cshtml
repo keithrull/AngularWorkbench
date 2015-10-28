@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Example7";
+}
+
+<div class="row" style="margin-top:20px;" ng-app="sampleApp">
+    <div class="col-lg-12" ng-controller="NameController as nameCtrl">
+        <div>
+            <form ng-submit="addHero()">
+                <input type="text" ng-model="newHero" />
+                <button value="Submit">Submit</button>
+            </form>
+            <ul>
+                <li ng-repeat="hero in heroes"><span ng-click="removeHero()">[x]</span> {{hero}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+@section headscripts
+{
+    <script>
+        angular.module('sampleApp', [])
+            .controller('NameController', function ($scope) {
+
+                $scope.heroes = ['Supernman', 'Batman', 'Green Lantern', 'Captain Marvel', 'Wolverine'];
+
+                $scope.addHero = function () {
+                    $scope.heroes.push($scope.newHero);
+                    $scope.newHero = '';
+                };
+
+                $scope.removeHero = function () {
+                    $scope.heroes.pop($scope.newHero);
+                };
+            });
+    </script>
+
+}

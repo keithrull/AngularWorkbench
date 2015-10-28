@@ -38,5 +38,15 @@ namespace AngularWorkbench.Controllers
         {
             return View();
         }
+
+        public ActionResult Example6()
+        {
+            return View();
+        }
+
+        public ActionResult Example7()
+        {
+            return View();
+        }
     }
 }
