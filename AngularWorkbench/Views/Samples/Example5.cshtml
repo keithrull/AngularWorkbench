@@ -28,7 +28,7 @@
             Zip: <input ng-model="zip" type="text" />
             <br />
 
-            Hello {{getFullAddress()}}
+            {{getFullAddress()}}
         </div>
     </div>
 </div>
@@ -47,6 +47,12 @@
                 profile.getFullName = function () {
                     return profile.firstName + " " + profile.lastName;
                 }
+
+                $scope.$watchGroup(['lastName', 'firstName'], function (newValue, oldValue, scope) {
+                    if (newValue != oldValue) {
+                        console.log(' was [' + oldValue + '] but is now [' + newValue + ']');
+                    }
+                });
             })
             .controller('AddressController', function ($scope) {
 
