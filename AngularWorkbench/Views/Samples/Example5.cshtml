@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Example5";
+}
+
+<div class="row" style="margin-top:20px;" ng-app="sampleApp">
+    <div class="col-lg-12" ng-controller="NameController as nameCtrl">
+        <div>
+            First name: <input ng-model="firstName" type="text" />
+            <br />
+            Last name: <input ng-model="lastName" type="text" />
+            <br />
+
+            Hello {{getFullName()}}
+        </div>
+    </div>
+
+    <div class="col-lg-12" ng-controller="AddressController as addressCtrl">
+        <div>
+            Adress 1: <input ng-model="address1" type="text" />
+            <br />
+            Address 2: <input ng-model="address2" type="text" />
+            <br />
+            City: <input ng-model="city" type="text" />
+            <br />
+            State: <input ng-model="state" type="text" />
+            <br />
+            Zip: <input ng-model="zip" type="text" />
+            <br />
+
+            Hello {{getFullAddress()}}
+        </div>
+    </div>
+</div>
+
+@section headscripts
+{
+    <script>
+        angular.module('sampleApp', [])
+            .controller('NameController', function ($scope) {
+
+                var profile = $scope;
+
+                profile.firstName = "john";
+                profile.lastName = "wick";
+
+                profile.getFullName = function () {
+                    return profile.firstName + " " + profile.lastName;
+                }
+            })
+            .controller('AddressController', function ($scope) {
+
+                var address = $scope;
+
+                address.address1 = "";
+                address.address2 = "";
+                address.city = "";
+                address.state = "";
+                address.zip = "";
+
+                address.getFullAddress = function () {
+
+                    var fullAddress = address.address1;
+
+                    if (address.address2.length)
+                        fullAddress += " " + address.address2
+
+                    if (address.city.length)
+                        fullAddress += " " + address.city
+
+                    if (address.state.length)
+                        fullAddress += " " + address.state
+
+                    if (address.zip.length)
+                        fullAddress += " " + address.zip
+
+                    return fullAddress;
+                }
+            });
+    </script>
+
+}
